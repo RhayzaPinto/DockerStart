@@ -11,7 +11,11 @@
 # docker run --name httpd-basic -p 8080:80 -d quay.io/redhattraining/httpd-parent:2.4
 ```
 
+![Pull image](./images/1.png)
+
 Para ter certeza que o container esta executando verifique atraves de linha de comando e depois atraves do seu navegador utilizando o endereço http://localhost:8080. Deve aparecer a mensage "Hello from the httpd-parent container!"
+
+![Navigator](./images/2.png)
 
 **Obs**
 Conforme vimos, o docker hub não é o único repositório de imagens, existem outros, alguns públicos e outros privados. No seu dia a dia você encontrará as informações necessárias para utilizar a imagem correta. Neste exemplo estamos utilizando o quay.io para baixar a imagem httpd-parent utilizando a tag 2.4.
@@ -48,6 +52,9 @@ press esc
 ```
 exit
 ```
+
+![Navigator](./images/3.png)
+
 </br>
 
 ### 3 Pare o container que esta sendo executado.
@@ -55,3 +62,5 @@ exit
 ```
 docker stop httpd-basic
 ```
+
+![Exiting](./images/4.png)
