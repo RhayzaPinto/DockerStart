@@ -40,20 +40,26 @@ FROM redhat/ubi8:8.5
 
 LABEL maintainer="Rhayza rhayzapinto@gmail.com"
 
+ENV PORT 8080
+
 EXPOSE 8080
 
-RUN yum install -y httpd
+RUN yum install -y httpd && yum clean all
 
-COPY src /var/www/html/index.html
+RUN sed -ri -e "/^Listen 80/c\Listen ${PORT}" /etc/httpd/conf/httpd.conf && \
+    chown -R apache:apache /etc/httpd/logs/ && \
+    chown -R apache:apache /run/httpd/
+
+COPY /src /var/www/html/
 
 CMD ["httpd", "-D", "FOREGROUND"]
 ```
 
 
-### 2 Com o seu Dockerfile pronto, execute o comando docker build e o nome da imagem deve ser _seunome/custom-apache_ e verifiquei se esta imagem esta disponivel localmente.
+### 2 Com o seu Dockerfile pronto, execute o comando docker build e o nome da imagem deve ser _seunome/custom-apache_ e verifique se a imagem está disponível localmente.
 
 ```
-docker build -t rhayza/custom-apache
+docker build -t rhayza/custom-apache .
 docker images
 ```
 
@@ -76,7 +82,6 @@ docker run --name meuapache -p 20080:8080 -d rhayza/custom-apache
 ### 5 Apos verificar se o container esta sendo executado corretamente e você conseguiu verificar a mensagem utilizando o seu navegador, para ele e então suba a sua imagem criada para o docker hub.
 
 ```
-docker stop meuapache
 docker tag rhayza/custom-apache rhayzapinto/meuapache
 docker push rhayzapinto/meuapache
 ```
