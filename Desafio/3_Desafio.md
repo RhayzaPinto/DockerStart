@@ -18,16 +18,14 @@ docker exec -it apache /bin/bash
 ```
 
 * Exponha o valor definido na variável de ambiente PORT para que os usuários do contêiner saibam como acessar o Apache Web Server;
-* Com a pasta criada no seu desktop e dentro dela o arquivo index.html, o arquivo deve ser copiado para a pasta do Apache DocumentRoot (/var/www/html/) dentro do container.
-
-Não existia o caminho /var/www/html/. Então a pasta que eu criei no meu desktop se chamava www e dentro dela outra com o nome html que contém o arquivo index.html
+* Com a pasta criada no seu desktop e dentro dela o arquivo index.html, o arquivo deve ser copiado para a pasta do Apache DocumentRoot (/usr/local/apache2/htdocs/) dentro do container.
 
 ```
-docker cp ./www apache:/var
+docker cp ./index.html apache:../usr/local/apache2/htdocs
 ```
   
 
 ### 2 Apos o container executado utilize o comando curl ou o seu navegador para acessar o arquivo index.html que foi criado.
 
 
-
+![New Navegator](./images/8.PNG)
